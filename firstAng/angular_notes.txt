@@ -1,0 +1,15 @@
+https://cli.angular.io -> A command line interface for Angular -> enable using cmd commands for angular
+Github set remote origin + install angular-cli-ghpages --> https://dzone.com/articles/how-to-deploy-an-angular-application-to-github || https://medium.com/@swarnakishore/deploying-angular-cli-project-to-github-pages-db49246598a1
+
+Install: 
+
+1. GitHub new repo -> clone lokális gépen -> cd mappa -> ezután install a cli-t
+
+npm install -g @angular/cli
+ng new my-dream-app
+cd my-dream-app
+ng serve -> futtatás -> browser-ben már működik is az app ( ha npm start-ot írok véletlenül, automatikusan átírja ng serve-re és így is működik )
+
+
+ng -v : verzió ellenőrzése
+
