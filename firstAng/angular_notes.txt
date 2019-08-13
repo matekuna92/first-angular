@@ -13,3 +13,27 @@ ng serve -> futtatás -> browser-ben már működik is az app ( ha npm start-ot 
 
 ng -v : verzió ellenőrzése
 
+Angular template-ek
+
+Direktívák: meglévő HTML elemeket tudunk kibővíteni ( úgy használandók, mint pl form inputnál a REQUIRED utasítás a html elemben ). 
+MVC-ben "service"-nek a komponens Class felel meg
+Komponens template-jében a komponensben definiált változókat tudom használni
+
+app.component.ts -> selector: 'name' -> ez a név fog megjelenni HTML elemként az oldal forrásában, ebbe kerül a teljes app
+Az index.html mellett több JS file érkezik betöltéskor, így a böngésző állítja elő a nézetet, a szerver csak az adatokat biztosítja ( ezért nem látszódnak az oldal forrásban a megírt elemek )
+
+Single Page Application fogalma ( a fenti mondat kb. ezt írta le ) 
+Skálázhatóság: erőforrás kiszervezhető a user gépére, így elegendő kisebb szerver is
+
+https://update.angular.io/ - leírás verziólépéshez
+
+constructor - a komponens létrejöttekor minden alkalommal lefut
+
+array filter, reduce, map, foreach átnézni!!!!! 
+
+Angular folyamat:
+
+1. AngularCLI.json file-ban van megadva az app kezdőpontja: main.ts és index.html
+2. main.ts file-ban az AppModule class-t találjuk, a ts-ből ugrunk az app.module.ts-re, ott pedig megtalálható az AppComponent komponens -> app.component.ts -re megyünk
+3. index.html-ben az app-root komponenst az app.component.ts -ben találjuk meg. A rendszer tudja, hogy a HTML-ben található app-root komponenst az app.component.ts -ben találat meg selectorként, ezért tudja megjeleníteni az itt lévő constructor-ban lévő függvényeket !   
+
