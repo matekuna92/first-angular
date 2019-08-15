@@ -1,12 +1,22 @@
 import { Component } from '@angular/core';
 
+/* komponens belépőpontja az app component.ts, 2 részből áll: 
+ @Component - komponens dekorátor (más néven metadata) + egy typeScript class-ból 
+ 
+ Komponens írja le, hogy "mit tud, mi érhető el"
+ class: komponenshez tartozó változók, függvények
+
+ https://angular.io/guide/architecture -> az ábrán a Component a lenti component Class, a Metadata pedig a metadata, dekorátor, maga az app component HTML pedig a template
+ */
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
+
 export class AppComponent {
-  title = 'firstAng';
+  title = 'First App';
   korte = 'korte';
 
   arr = [1,2,3,4,5,6,7];  // osztályváltozók

@@ -1,4 +1,4 @@
-https://cli.angular.io -> A command line interface for Angular -> enable using cmd commands for angular
+﻿https://cli.angular.io -> A command line interface for Angular -> enable using cmd commands for angular
 Github set remote origin + install angular-cli-ghpages --> https://dzone.com/articles/how-to-deploy-an-angular-application-to-github || https://medium.com/@swarnakishore/deploying-angular-cli-project-to-github-pages-db49246598a1
 
 Install: 
@@ -35,5 +35,38 @@ Angular folyamat:
 
 1. AngularCLI.json file-ban van megadva az app kezdőpontja: main.ts és index.html
 2. main.ts file-ban az AppModule class-t találjuk, a ts-ből ugrunk az app.module.ts-re, ott pedig megtalálható az AppComponent komponens -> app.component.ts -re megyünk
-3. index.html-ben az app-root komponenst az app.component.ts -ben találjuk meg. A rendszer tudja, hogy a HTML-ben található app-root komponenst az app.component.ts -ben találat meg selectorként, ezért tudja megjeleníteni az itt lévő constructor-ban lévő függvényeket !   
+3. index.html-ben az app-root komponenst az app.component.ts -ben találjuk meg. A rendszer tudja, hogy a HTML-ben található app-root komponenst az app.component.ts -ben találat meg selectorként, ezért tudja megjeleníteni az itt lévő constructor-ban lévő függvényeket !
+
+Typescript az ES6-ot bővíti ki pl. típusossággal
+
+ng serve - 3 funkcionalitásból tevődik össze : elindít egy fordítást, figyelést, és ha valami változott, akkor újrafordít, és elindít és kiszolgálást(webszervert hoz létre)
+
+ng build - 
+ng build --prod - production módban szigorúbban figyelmeztet az angular pl. nem használt változókra, amik fejlesztő
+módban még elfogadhatók... kisebbek lesznek a fájl méretek is production módban
+
+Angular kiélesítés - DIST mappa tartalmát kell kimásolni ?
+Dist mappában lévő index.html-ben már szerepelnek a generált .js fájlok script src-ben (ng build generálja...), ez mozgatható egyik pontból a másikba szerveren
+
+Hogyan lesz a Typescript-ből JS, amit már ért a böngésző? .ts -> .js
+
+TSC fordító: TypeScript Compliler - ts nyelvi elemekkel rendelkező fájlból JS fájlt csinál
+tsc parancs: a tsconfig.ts alapján lefut a fordítás -> tsconfig.json fájlban az outDir adja meg melyik mappába fordítja (dist/out-tsc jelenleg), létrejön a dist/out-tsc mappa
+
+out-tsc/app mappában pedig látható az app.component.js javascript fájl, ez tartalmazza az app.component.ts fájlt js-re lefordítva
+
+Environment mappa: a 2 fájl tartalmazza az environment változót, ha --prod-dal build-elünk, akkor production: true, egyébként false --> MAIN.TS fájlban vizsgálom milyen módban vagyok: 
+
+if (environment.production) {
+  enableProdMode();
+}
+
+
+Bootstrap integrálás a projektbe: https://github.com/angular/angular-cli/wiki/stories-include-bootstrap
+
+
+
+
+
+     
 
