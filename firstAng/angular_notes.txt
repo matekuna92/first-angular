@@ -62,7 +62,13 @@ if (environment.production) {
 }
 
 
-Bootstrap integrálás a projektbe: https://github.com/angular/angular-cli/wiki/stories-include-bootstrap
+Bootstrap integrálás a projektbe: https://github.com/angular/angular-cli/wiki/stories-include-bootstrap  ( új projektet hoztunk létre ehhez: https://github.com/matekuna92/ngBootstrap )
+
+- A Bootstrap stílus csak ÚJRAINDÍTÁS UTÁN lép érvénybe... leállítás -> ng serve ismét
+
+angular.json "styles" tömbjében definiált fájlok injektálódnak be a HTML-be, mintha <link rel> vagy <script src> -ként írnánk be a HTML-be
+
+
 
 
 
