@@ -1,7 +1,7 @@
 ﻿https://cli.angular.io -> A command line interface for Angular -> enable using cmd commands for angular
 Github set remote origin + install angular-cli-ghpages --> https://dzone.com/articles/how-to-deploy-an-angular-application-to-github || https://medium.com/@swarnakishore/deploying-angular-cli-project-to-github-pages-db49246598a1
 
-Install: 
+--- INSTALL ---
 
 1. GitHub new repo -> clone lokális gépen -> cd mappa -> ezután install a cli-t
 
@@ -31,7 +31,7 @@ constructor - a komponens létrejöttekor minden alkalommal lefut
 
 array filter, reduce, map, foreach átnézni!!!!! 
 
-Angular folyamat:
+--- ANGULAR FOLYAMAT ---
 
 1. AngularCLI.json file-ban van megadva az app kezdőpontja: main.ts és index.html
 2. main.ts file-ban az AppModule class-t találjuk, a ts-ből ugrunk az app.module.ts-re, ott pedig megtalálható az AppComponent komponens -> app.component.ts -re megyünk
@@ -62,11 +62,49 @@ if (environment.production) {
 }
 
 
+--- BOOTSTRAP INTEGRÁLÁS ---
+
 Bootstrap integrálás a projektbe: https://github.com/angular/angular-cli/wiki/stories-include-bootstrap  ( új projektet hoztunk létre ehhez: https://github.com/matekuna92/ngBootstrap )
 
 - A Bootstrap stílus csak ÚJRAINDÍTÁS UTÁN lép érvénybe... leállítás -> ng serve ismét
 
 angular.json "styles" tömbjében definiált fájlok injektálódnak be a HTML-be, mintha <link rel> vagy <script src> -ként írnánk be a HTML-be
+
+
+--- ANGULAR FLOW ---
+
+angular.json -> meg vannak adva az alkalmazás kezdőpontjai : 
+- index.html
+- main.ts
+
+az angular.json-ből átmegyünk az index.html-re, ahol az <app-root> komponens van használva, mivel ez nem tikipus HTML elem, ezt nem ismeri közvetlenül az angular sem
+main.ts -> bootstrapModule-ban található egy AppModule -> ebből megnyitva az 
+app.module.ts -t itt található a bootstrap property-ben egy [AppComponent] érték -->
+app.component.ts -> a selector-ban van megadva az app-root, ezt találja meg az angular, így tudja értelmezni az index.html-ben lévő <app-root> kifejezést -->
+app.component.html -> a tényleges HTML, amit megjelenítünk
+
+app compontent ts 2 részből áll: 
+
+1. Selector ( 
+2. AppComponent nevű typescript class 
+
+
+--- GIT ---
+git remote add origin URL - lokális git-et összeköti a szerveren lévő távoli git-tel. Ezután push-olható a lokális változtatás a távoli git repo-ba
+
+
+ng-bootsrap VS ngx-bootsrap: ng CSAK bootstrap V4, ngx: V3-mal is kompatibilitis
+
+--- KOMPONENS LÉTREHOZÁSA ---
+
+Új projektben: ng new basicComponent
+
+Új komponense generálása: 
+
+ng generate component componentName
+
+
+
 
 
 
