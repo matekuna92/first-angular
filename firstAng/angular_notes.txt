@@ -83,12 +83,6 @@ app.module.ts -t itt található a bootstrap property-ben egy [AppComponent] ér
 app.component.ts -> a selector-ban van megadva az app-root, ezt találja meg az angular, így tudja értelmezni az index.html-ben lévő <app-root> kifejezést -->
 app.component.html -> a tényleges HTML, amit megjelenítünk
 
-app compontent ts 2 részből áll: 
-
-1. Selector ( 
-2. AppComponent nevű typescript class 
-
-
 --- GIT ---
 git remote add origin URL - lokális git-et összeköti a szerveren lévő távoli git-tel. Ezután push-olható a lokális változtatás a távoli git repo-ba
 
@@ -101,7 +95,23 @@ ng-bootsrap VS ngx-bootsrap: ng CSAK bootstrap V4, ngx: V3-mal is kompatibilitis
 
 Új komponense generálása: 
 
-ng generate component componentName
+ng generate component componentName -> 4 fájl létrejön + az app.module.ts update-elődik az új komponens nevével
+
+app.module.ts - tartalmazza a komponenseket, paraméterei:
+
+@NgModule - ezzel adjuk meg, hogy egy modulról beszélünk
+declarations - milyen komponenseket definiál
+imports - milyen más modult importál
+providers - milyen szolgáltatásokat ad a külvilágnak
+bootstrap - melyik komponenst indítja el legelsőnek ( AppComponent-et default )
+
+export class AppModule - AppModule nevű typescript classként exportáljuk
+
+Az újonnan létrehozott komponens csak akkor látszódik, ha hivatkozunk is rá ! Attól, hogy létre van hozva a komponens, a HTML tartlalma
+nem látszódik default, mivel nincs sehol meghívva --> meg kell hívni <app-componentName> módon pl. az app.component.html-ben
+
+
+
 
 
 
