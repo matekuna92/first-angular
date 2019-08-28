@@ -91,7 +91,8 @@ ng-bootsrap VS ngx-bootsrap: ng CSAK bootstrap V4, ngx: V3-mal is kompatibilitis
 
 --- KOMPONENS LÉTREHOZÁSA ---
 
-Új projektben: ng new basicComponent
+Új projektben: ng generate component basicComponent
+Rövid alakja: ng g c basicComponent
 
 Új komponense generálása: 
 
@@ -110,6 +111,33 @@ export class AppModule - AppModule nevű typescript classként exportáljuk
 Az újonnan létrehozott komponens csak akkor látszódik, ha hivatkozunk is rá ! Attól, hogy létre van hozva a komponens, a HTML tartlalma
 nem látszódik default, mivel nincs sehol meghívva --> meg kell hívni <app-componentName> módon pl. az app.component.html-ben
 
+a component.ts @Component részben inline módon is megadható a HTML a template ( templateURL helyett ), így akár 
+törölhető a component HTML, CSS, így 1 mappában 1 TS fájl marad... --> nagyobb fájl esetén NEM érdemes így szervezni !!!
+
+Ha kitörlöm a komponenshez tartozó valamennyi fájlt, de a hivatkozást bennehagyom valamelyik HTML-ben, akkor 
+getSourceFile errort kapunk... mivel a hivatkozáshoz már nem tartozik komponens --> app.module.ts -ből is törölni kell
+a fájlok törlése után! 
+
+
+Konstruktor, template literal - komponens létrejöttekor mindig lefut a konstruktor
+
+Komponens 2 részből áll: 
+1. Dekorátor (@Component) - definiálja a komponenshez tartozó elemeket
+2. typescript class, amit exportálunk majd
+
+// dekorátor, függvényhívás, aminek a paramétereit állítjuk be (tömb) 
+// dekorátor a component class-hoz fog tartozni, lefut a class előtt
+
+import { Component } from '@angular/core';  // Component direktíva importálása
+
+a kézzel létrehozott Komponenst ugyanúgy be kell írni az app.module.ts-be is, hogy ismerje az angular az elemet!
+
+componentName.component.css --> a komponenshez tartozó stílusok csak a hozzátartozó component.html fájlban lévő elemekre
+érvényesek... az <app-componentName></app-componentName> -en kívül megadott, ugyanolyan típusú elemekre nincs hatással
+
+SASS-CSS <> Typescript-Javascript --> a SASS css-re fordul, a Typescript JS-re, emellett pedig plusz funkciókat adnak
+
+  
 
 
 
