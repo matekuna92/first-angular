@@ -137,7 +137,22 @@ componentName.component.css --> a komponenshez tartozó stílusok csak a hozzát
 
 SASS-CSS <> Typescript-Javascript --> a SASS css-re fordul, a Typescript JS-re, emellett pedig plusz funkciókat adnak
 
-  
+-- DIREKTÍVÁK ---
+
+*ngFor - struktúrális direktíva : megváltoztatja a HTML tartalmát az ő futásának eredményeképpen  
+*ngFor, ngClass - https://angular.io/api/common/NgClass
+
+-- EVENT BINDING --
+
+DOM elem és a Typescript class között történik a kommunikáció
+- minden JS event-et kiegészít az Angular, így az összes eddigi JS event elérhető Angularban, plusz dolgokkal
+
+( IDE: ha egyszerű "event" kifejezést adunk meg parméterként, az IDE nem tudja milyen típusú eseményt várjon, így 
+nem dobja fel az ajánlott opciókat. Azonban ha konkrétan megadjuk a típust ( pl: demo(evt: MouseEvent) ), ekkor már 
+megjelennek javaslatként a MouseEvent-hez tartozó property-k (tulajdonságok) )
+
+
+
 
 
 
