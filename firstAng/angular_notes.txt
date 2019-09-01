@@ -151,6 +151,26 @@ DOM elem és a Typescript class között történik a kommunikáció
 nem dobja fel az ajánlott opciókat. Azonban ha konkrétan megadjuk a típust ( pl: demo(evt: MouseEvent) ), ekkor már 
 megjelennek javaslatként a MouseEvent-hez tartozó property-k (tulajdonságok) )
 
+-- ATTRIBUTE BIND --
+
+HTML elemek attribútumait [] szögletes zárójelben adjuk meg a html-ben -> megadható neki változó, ami a typescript classból jön
+
+Legtöbbször egyirányú kötésről beszélünk, HTML-> component - () -, component -> HTML - {{}}, [] -, oda-vissza irány ( ha lehet, ritkán használjuk! ( 2 way data-binding ) PERFORMANCE ISSUE!!! ) : 
+A HTML paraméter értékét hozzákötöm a belső osztályváltozó értékéhez - [ () ] : banana in the box a hivatalos elnevezése. Ez viszont nem létezik alapból,
+egy külön modult kell beimportálni a használatához ( ngModul-on keresztül dolgozik a háttérben, ehhez viszont szükséges a FormsModule import a module.ts-ben )
+
+
+2 féle form kezelés Angularban: 
+
+1. template-driven - HTML-ből összerakom az oldalt, ezután kötjük hozzá a  HTML elemeket a typescript változóhoz
+2. reaktív - formokat a kódból lehet felépíteni
+
+Oda-vissza történik a komponensben és a HTML-ben történő módosítás, pl egy input mező esetében... megadom az értéket a komponensben, amit megjelenítek az 
+<input> mezőben. Ha a mezőben a weboldalon törlök/hozzáadok, az a komponensben a megadott változó értékét is változtatja ( 2 way data-binding )
+
+
+
+
 
 
 
