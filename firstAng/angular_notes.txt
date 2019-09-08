@@ -168,6 +168,29 @@ egy külön modult kell beimportálni a használatához ( ngModul-on keresztül 
 Oda-vissza történik a komponensben és a HTML-ben történő módosítás, pl egy input mező esetében... megadom az értéket a komponensben, amit megjelenítek az 
 <input> mezőben. Ha a mezőben a weboldalon törlök/hozzáadok, az a komponensben a megadott változó értékét is változtatja ( 2 way data-binding )
 
+-- OSZTÁLYVÁLTOZÓK LÁTHATÓSÁGI KIJELÖLŐK --
+
+public - 
+private - 
+protected - 
+
+2 féle nyelvi irányzat: 
+- szigorú típusosság - mindig mindennek 1 féle típusa van. Ha egy változó string típusú, akkor kizárólag stringet tudok megadni a változó értékének
+- dinamikus típusosság (javascript) - a változó mindig olyan típust vesz fel, amilyen típusú értéket adok meg neki (szám, string)
+
+-- PIPE-OK HASZNÁLATA --
+
+Pipe: változó értékét módosíthatjuk, a kifejezés bal oldalát átalakítja a jobb oldalon megadottak szerint, miközben a 
+változó értéke nem változik    {{ változó | feltétel }} pl. {{ title | uppercase }}
+
+JSON PIPE: json formátumban térnek vissza az alapértelmezetten [Object Object]-ként megjelenő elemek
+
+-- RESPONSIVE MENU - NGX-BOOTSTRAP --
+
+ - install ngx-bootstrap collapse component(ha még nincs), app.module.ts-ben be kell húzni a CollapseModule-t az ngx-bootsrap csomagból + a button-re megadni a doksiban található click eseményt --> https://valor-software.com/ngx-bootstrap/#/collapse
+
+
+
 
 
 
