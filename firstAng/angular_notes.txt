@@ -189,6 +189,28 @@ JSON PIPE: json formátumban térnek vissza az alapértelmezetten [Object Object
 
  - install ngx-bootstrap collapse component(ha még nincs), app.module.ts-ben be kell húzni a CollapseModule-t az ngx-bootsrap csomagból + a button-re megadni a doksiban található click eseményt --> https://valor-software.com/ngx-bootstrap/#/collapse
 
+-- ADD, EDIT, DELETE, műveletek <ul> lista elemeivel --
+
+Osztályváltozó esetén a public a default, amit nem kell külön kiírni 
+Adatleíró modell osztály: export class classModel { id: number; name: string; } - interface is használható ( class VS interface ! ) -->
+majd a komponens osztályban definiálhatunk pl. egy tömböt, ami a classModel-ben megadott adatszerkezetű elemeket vár a tömb elemeiként.
+Tehát a tömb olyan objektumokat fog tartalmazni, amely mindegyikének lesz egy id és egy name property-je, tulajdonsága.
+
+...
+Delete function esetén: nem elég teljes object-et átadni, így nincs szükség ID-ra? DeepClone, referencia, stb. utánanézeni JS-ben ! Hogyan tudunk szólni
+az ngFor-nak, hogy itt változás történt? 
+...
+
+
+-- img src-nek nem adható meg HTTP link (pl komponensben képeket adunk meg property-ként http linkekkel : 
+ERR_UNKNOWN_URL_SCHEME error --> nem adtuk meg az angularnak, hogy a http biztonságos, és használhatja ->
+XSS ellen véd az angular alapértelmezetten --> 
+<img src=" {{ evt.picture }} helyett közvetlenül az src attribútumnak kell megadni a képet 
+<img [src] = "evt.picture"
+
+
+
+
 
 
 
