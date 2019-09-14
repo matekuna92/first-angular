@@ -208,6 +208,16 @@ XSS ellen véd az angular alapértelmezetten -->
 <img src=" {{ evt.picture }} helyett közvetlenül az src attribútumnak kell megadni a képet 
 <img [src] = "evt.picture"
 
+Immutability - adatot nem módosítunk, sosem az eredeti tömböt módosítjuk, hanem létrehozunk egy új példányt belőle,
+és azzal dolgozunk!
+Spread operator - szétbontja a tömböt elemekre, így pl. egy utasítással beszúrható az összes elem ...arr módon
+másik tömbbe, objektumként, vagy paraméterként is
+
+Best Practise: az EventModel-t kigeneráljuk külön class-ként, és itt írjuk meg a változókat és a konstruktort,
+nem a listDemo ts-ben!
+
+
+
 
 
 
