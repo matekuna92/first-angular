@@ -216,6 +216,28 @@ másik tömbbe, objektumként, vagy paraméterként is
 Best Practise: az EventModel-t kigeneráljuk külön class-ként, és itt írjuk meg a változókat és a konstruktort,
 nem a listDemo ts-ben!
 
+saját pipe generálása : ng g pipe folder/pipeName
+
+implements: interfész implementálása az adott osztályban
+
+
+GIT lokális változások eldobása : git reset --hard -> minden lokális változtatás eldobva
+git log -1 -> meg tudom nézni, hogy melyik az a commit, amin éppen állok
+git pull origin master --> frissíteni a remote repo alapján 
+
+angular.json --> prefix property tetszőlegesen átírható "app" helyett bármi másra --> ezt a prefix-et használjuk HTMLben a komponensek előtt (app-root, app-event, stb.)
+
+Angularban HREF-ek helyett RouterLink-eket használunk ! - https://angular.io/guide/router
+
+Route létrehozása : component neve + - routing fájl elnevezés --> app.component -> app-routing.ts
+
+Route létrehozása után a component HTML-ben az ' "<a href="index.html" ' helyett már az ' <a routerLink="/home"> ' kifejezést használjuk! - Különben mikor visszamegyünk a kezdőoldalra,
+akkor is ott marad a 404-es oldal tartalma!
+
+<router-outlet> --> a weboldal "cserélhető" része -> az app-routing alapján dönti el az angular, milyen tartalom (melyik komponens) jelenjen meg
+a router-outlet-ben ebben a részben, amiket a routingban a "path:" részeknél adtunk meg 
+
+
 
 
 
