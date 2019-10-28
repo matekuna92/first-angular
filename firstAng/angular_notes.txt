@@ -1,6 +1,8 @@
 ﻿https://cli.angular.io -> A command line interface for Angular -> enable using cmd commands for angular
 Github set remote origin + install angular-cli-ghpages --> https://dzone.com/articles/how-to-deploy-an-angular-application-to-github || https://medium.com/@swarnakishore/deploying-angular-cli-project-to-github-pages-db49246598a1
 
+git push -u origin testbranch - master-től eltérő branch-be push
+
 --- INSTALL ---
 
 1. GitHub new repo -> clone lokális gépen -> cd mappa -> ezután install a cli-t
@@ -227,7 +229,8 @@ git pull origin master --> frissíteni a remote repo alapján
 
 angular.json --> prefix property tetszőlegesen átírható "app" helyett bármi másra --> ezt a prefix-et használjuk HTMLben a komponensek előtt (app-root, app-event, stb.)
 
-Angularban HREF-ek helyett RouterLink-eket használunk ! - https://angular.io/guide/router
+Angularban HREF-ek helyett RouterLink-eket használunk ! -> Azért, hogy ne irányítsuk el a felhasználót az oldalról,
+hanem azt adjuk meg hogy az ANGULARON BELÜL melyik url-re szeretnénk eljutni - https://angular.io/guide/router
 
 Route létrehozása : component neve + - routing fájl elnevezés --> app.component -> app-routing.ts
 
@@ -237,6 +240,13 @@ akkor is ott marad a 404-es oldal tartalma!
 <router-outlet> --> a weboldal "cserélhető" része -> az app-routing alapján dönti el az angular, milyen tartalom (melyik komponens) jelenjen meg
 a router-outlet-ben ebben a részben, amiket a routingban a "path:" részeknél adtunk meg 
 
+Nevesített router outlet-ek: egy page-en belül lehet több router-outlet is, elnevezés alapján megkülönböztethetőek
+<router-outlet name="">
+
+html form REQUIRED + Angular validáció összeakad(?), ideiglenesen kilőhető a <form novalidate> attribútummal !
+ez az attribútum viszont felülírható a formnovalidate-tal, melyet a formhoz tartozó elemen használhatunk(pl. gomb)
+
+(The formnovalidate attribute overrides the novalidate attribute of the <form> element. - https://www.w3schools.com/tags/att_input_formnovalidate.asp)
 
 
 
