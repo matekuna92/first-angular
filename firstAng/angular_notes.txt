@@ -248,6 +248,39 @@ ez az attribútum viszont felülírható a formnovalidate-tal, melyet a formhoz 
 
 (The formnovalidate attribute overrides the novalidate attribute of the <form> element. - https://www.w3schools.com/tags/att_input_formnovalidate.asp)
 
+- SERVICE - EK - https://angular.io/tutorial/toh-pt4
+
+létrehozás : ng generate service serviceName  ( ng g s serviceName rövidítve )
+
+Injectable dekorátor, dependency injection nem minden komponens dolgozik mindegyikkel, hanem egy komponens
+szolgáltatja az információt, a másik pedig feldolgozza. 
+A 2 között működik a dependency injection --> több feldolgozónak ugyanazt az erőforrást tudja kiosztani
+
+mock adat: még nem dinamikusan változó adat, csak egy javascript objektumot adok meg kézzel tesztelni
+
+Service-ek esetén az adatokat egy egységbe szeretnénk zárni, ehhez class-t használunk... 
+Service mellé létrehoztunk egy eventModel class-t, ami az EGY elemi adategységhez tartozó dolgokat magába foglalja
+eventService injectable + eventModel class
+
+GitHub GIST szolgáltatás: gist github oldalon: create new gist -> fájl/kód részletek hozhatók létre, megoszhatók -- gist.github.com
+
+Komponensek közötti kommunikáció - https://angular.io/guide/component-interaction 
+
+ng g cl shared/userModel
+ng g service shared/user
+
+Miután meg van a Model és a service logikája, ezután a login Component-ben meg kell írni magát a login() függvényt. 
+A login component html-ben a  submit button-nél eddig ezt routerLink-kel átirányítottuk /user-re, ehelyett mostmár 
+a login component ts login() függvényét használjuk helyette, html-ben is át kell írni a routerlinket
+
+
+
+
+
+
+
+
+ 
 
 
 
