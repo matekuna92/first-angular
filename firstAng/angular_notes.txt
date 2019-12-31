@@ -156,6 +156,7 @@ megjelennek javaslatként a MouseEvent-hez tartozó property-k (tulajdonságok) 
 -- ATTRIBUTE BIND --
 
 HTML elemek attribútumait [] szögletes zárójelben adjuk meg a html-ben -> megadható neki változó, ami a typescript classból jön
+[] - attribútum direktíva !
 
 Legtöbbször egyirányú kötésről beszélünk, HTML-> component - () -, component -> HTML - {{}}, [] -, oda-vissza irány ( ha lehet, ritkán használjuk! ( 2 way data-binding ) PERFORMANCE ISSUE!!! ) : 
 A HTML paraméter értékét hozzákötöm a belső osztályváltozó értékéhez - [ () ] : banana in the box a hivatalos elnevezése. Ez viszont nem létezik alapból,
@@ -273,33 +274,127 @@ Miután meg van a Model és a service logikája, ezután a login Component-ben m
 A login component html-ben a  submit button-nél eddig ezt routerLink-kel átirányítottuk /user-re, ehelyett mostmár 
 a login component ts login() függvényét használjuk helyette, html-ben is át kell írni a routerlinket
 
+OBJECT.ASSIGN VS NEW CONSTRUCTOR működés ?
+
+Object assign: property-ket másolja egyik objektumról a másikra (csak a változókat) 
+létezik egy enumerable property - ha ez megszámolható, akkor végig tudok menni rajta, és ezeket másolja át
+
+mind a New, mint az object.create elvárja, hogy az osztálynak legyen egy konstruktor függvénye, és ez az objektum a
+konstruktor meghívásán keresztül jön létre. Tulajdonképpen a konstruktorba van rejtve az object.assign
+
+ForRoot mire jó ? - https://valor-software.com/ngx-bootstrap/#/alerts  USAGE
+
+https://valor-software.com/ngx-bootstrap/#/alerts - tanulmányozható a komponens hogy épül fel az egyes ngx-bootstrap
+összetevők esetén
+
+- Ha változó előtt nincs előtag, akkor public a default láthatóság !
+
+[] - attribútum direktíva
+<ng template #referenceID> -> template referencia
 
 
+---- AUTH GUARD ----
+
+https://angular.io/guide/router
+
+ng generate guard guardName -> angular-cli guard-okat is tud generálni, lista: https://www.npmjs.com/package/@angular/cli
+
+A guard egy CanActivate interfészt valósít meg, ami egy boolean értékkel tér vissza. Login kezelésre használható
+
+FORM -ok 2 fajtája: 
+
+1. Template Driven Form - HTML kialakításból indulunk ki, ehhez írjuk meg utána a mögöttes működést
+2. Reaktív form - adatmodell alapján állítom össze az egész formot
+
+NgModel - html -ben 
+[(ngModel)]="event.name" --> az Event osztályváltozó name property-jét összerendelem a name input field belső tartalmával
 
 
+ROUTER / ACTIVATED ROUTE 
+
+router.navigate 
+activatedRoute az aktuális url-hez tartozó szolgáltatás nyújtja, nem tartozik hozzá navigate, azt a Router végzi !
+
+map - leképezés a tömbről, nem módosítja az eredetit
+
+---- FIREBASE ----
+
+Firebase - backend service, adatbázist ad, validációs, autentikációs szolgáltatást is kínál
+
+Firebase projekt -> Database fül -> child elemeket adhatunk hozzá a root url-hez, akár többszintű elemet is létrehozhatunk. 
+A key az URL-ben jelenik meg, pl.  key: teszt --> firebaseio.com/teszt
+
+Ha az URL-ben lévő value után írom, hogy ".json", akkor json formátumban visszakapom a key-hez tartozó value értéket
+
+REST API - fogalom
+
+https://en.wikipedia.org/wiki/Representational_state_transfer
+
+PUT - teljes struktúra felülírás
+POST - generált név alatt hozza létre a küldött adatokat (pl. raw JSON) -> így nem írja felül a többi adatot!
+PATCH - 1 adatot tud felülírni
+
+Auth API - https://firebase.google.com/docs/reference/rest/auth
+
+https://firebase.google.com/docs/reference/rest/auth#section-create-email-password 
+
+A saját [API-KEY]-t bemásolva az url végére az elvárt JSON formátumot megadva a Request Body Payload-ban új usert szúrhatunk be az adatbázisba.
+Ha sikeres, akkor a Firebase Authentication/Users táblázatban látszódik is az új user
+
+Létrehozunk az adatbázisban egy új node-ot a fában "users" néven, majd a regisztrált userID alá megadjuk az adatokat a userModel-hez hasonlóan(név, email, gender,
+stb.). 
+
+- LOGIN WITH EMAIL AND PASSWORD -
+
+Doksiból a login URL-t használva az email, password-öt body-ban JSON formátumban megadva be tudunk jelentkezni a regisztrált user-rel POST kéréssel  -->
+Ha sikeres a login, kapunk egy IDTOKEN-t, amit majd az autentikációs API fog várni az URL végén --> az idtoken nélkül permission denied error-t kapunk 
+
+Beállítás: 
+
+Firebase -> Database -> Rules fül -> ".read": "auth !== null", ".write": "auth !== null" 
+
+Ekkor a Database URL-t ha meghívjuk GET-tel, permission denied error-ral tér vissza, csak az IDTOKEN-t megadva érhetem el az adott oldalt 
+https://firebase.google.com/docs/database/rest/auth - Firebase ID tokens
+
+A https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY] kérésre a válaszban visszakaptunk egy "idToken" stringet, 
+ezt kell megadni az url végére query paraméterként: --> "https://<DATABASE_NAME>.firebaseio.com/users/ada/name.json?auth=<ID_TOKEN>"
+
+Így azonosítva van a felhasználó, és a user.json tartalma kiolvasható! 
+
+https://medium.com/letsboot/lets-learn-how-to-install-and-setup-angularfire2-4-0-135d72bb0a41
+  
+Firebase-tools Install, Angular app és Firebase DB összekapcsolása, előkészítés: 
+npm install -g firebase-tools
+
+Csak lokálisan fejlesztünk, ezért a build paranccsal meg kell adni azokat a fájlokat, amelyeket szeretnénk majd deploy-olni a firebase-ben: 
+
+1. bejelentkezés firebase-be, összekapcsolás a gmail account-tal: firebase login --> linken belépni
+
+2. dir -->nem látszódik minden fájl! 
+
+3. ng build --prod - a build állítja elő a fordítást -> létrehozza azokat a fájlokat, melyeket fejlesztési időben nem hoz létre, mert memóriában tart
+prod: olyan optimalizálások bekapcsolása, melyek éles környezetben szükségesek(környezeti változók behúzása, fájl méretek minimalizálása, stb.)
+
+4. fordítás után: firebase init -> ez az utasítás kell hozzá, hogy a firebase-cli használja ezeket a fájlokat -> cmd-ben kiválasztani melyik Firebase
+service-t szeretnénk használni(database,firestore,functions,hosting,storage,emulators) -> Hosting-ot használjuk jelenleg
+
+A hosting-ot választva felajánl egy listát, amiben az összes gmail accounthoz(amivel beléptünk firebase login-nal) tartozó adatbázis
+látszódik a listában, "Add existing project" --> kiválasztható a jegybazar-XXXX adatbázis
+
+--> ez után változik a mappaszerkezet a projektben, közben létrejön egy DIST mappa az ng build --prod eredményeként!
++ létrejött 2 fájl: firebaserc, és a firebase.json
+
+https://firebase.google.com/docs/hosting/full-config --> a home redirect már a FIREBASE INIT utasítás közben beállítható, megkérdezi a telepítő, szeretném-e
+ezt a feature-t -> tutorialban még kézzel kellett beállítani https://firebase.google.com/docs/hosting/full-config alapján (ezen belül a firebase.json linken)
 
 
+/* firebase.json link és a #redirects alapján
+megadom azt a projekt mappát(dist), amit szeretnék feltölteni firebase-be
+valamint beállítható, hogy a projekt mappán belüli minden kérést irányítsa át az index.html-re
+https://firebase.google.com/docs/hosting/full-config#redirects
+*/ 
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Ha kész a json fájl konfigurálása, akkor --> firebase deploy parancs
 
 
 
